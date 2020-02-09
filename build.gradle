@@ -9,6 +9,6 @@ buildscript {
 }
 
 ext {
-    PUBLISH_VERSION_CODE = 54
-    PUBLISH_VERSION_NAME = '1.5.1'
+    PUBLISH_VERSION_CODE = 55
+    PUBLISH_VERSION_NAME = '1.6.0'
 }

@@ -63,6 +63,7 @@ class ForegroundDetector implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityPaused(Activity activity) {
+        mCurrentActivity = null;
         mForegrounded = false;
         mOnForegroundListener.onBackgroundEvent();
     }
