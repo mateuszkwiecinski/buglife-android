@@ -1,47 +1,14 @@
 buildscript {
     repositories {
-        jcenter()
         google()
+        gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
-    }
-}
-
-apply plugin: 'com.android.library'
-
-allprojects {
-    repositories {
-        jcenter()
-        google()
+        classpath 'com.project.starter:plugins:0.6.0'
     }
 }
 
 ext {
-    PUBLISH_GROUP_ID = 'com.buglife.sdk'
-    PUBLISH_ARTIFACT_ID = 'buglife-android'
     PUBLISH_VERSION_CODE = 54
     PUBLISH_VERSION_NAME = '1.5.1'
-}
-
-android {
-    compileSdkVersion 29
-
-    defaultConfig {
-        minSdkVersion 16
-        versionCode PUBLISH_VERSION_CODE
-        versionName PUBLISH_VERSION_NAME
-
-        vectorDrawables.useSupportLibrary = true
-    }
-}
-
-dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
-    implementation "com.squareup.okhttp3:okhttp:3.12.1"
-    testImplementation 'junit:junit:4.13'
-    testImplementation 'org.assertj:assertj-core:3.14.0'
-    testImplementation 'org.json:json:20171018'
 }

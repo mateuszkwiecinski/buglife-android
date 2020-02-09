@@ -1,0 +1,43 @@
+plugins {
+    id 'digital.wup.android-maven-publish' version '3.6.2'
+    id 'com.starter.library.android'
+}
+
+project.version = PUBLISH_VERSION_NAME
+android {
+    defaultConfig {
+        minSdkVersion 16
+        versionCode PUBLISH_VERSION_CODE
+        versionName PUBLISH_VERSION_NAME
+
+        vectorDrawables.useSupportLibrary = true
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = 'github'
+            setUrl('https://maven.pkg.github.com/mateuszkwiecinski/project-starter')
+            credentials {
+                username 'mateuszkwiecinski'
+                password project.findProperty('GH_TOKEN')
+            }
+        }
+    }
+    publications {
+        jar(MavenPublication) {
+            from components.android
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
+    implementation "com.squareup.okhttp3:okhttp:4.3.0"
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.assertj:assertj-core:3.14.0'
+    testImplementation 'org.json:json:20171018'
+}
