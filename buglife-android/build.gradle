@@ -7,7 +7,6 @@ projectConfig {
     generateBuildConfig true
 }
 
-
 project.version = PUBLISH_VERSION_NAME
 android {
     defaultConfig {
