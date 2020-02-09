@@ -22,7 +22,7 @@ publishing {
     repositories {
         maven {
             name = 'github'
-            setUrl('https://maven.pkg.github.com/mateuszkwiecinski/project-starter')
+            setUrl('https://maven.pkg.github.com/mateuszkwiecinski/buglife-android')
             credentials {
                 username 'mateuszkwiecinski'
                 password project.findProperty('GH_TOKEN')
