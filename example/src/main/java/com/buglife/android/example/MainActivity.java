@@ -8,6 +8,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,24 +31,24 @@ public class MainActivity extends AppCompatActivity {
     LocationListener mLocationListener;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView introTextView = (TextView) findViewById(R.id.intro_text_view);
+        TextView introTextView = findViewById(R.id.intro_text_view);
         introTextView.setText(getIntroText());
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Screen recording is only available in Android M & higher
-            Button button = (Button) findViewById(R.id.record_screen_button);
+            Button button = findViewById(R.id.record_screen_button);
             button.setVisibility(View.GONE);
         }
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
 
         if (!hasStarted) {
             mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (grantResults[0] == PERMISSION_GRANTED || grantResults[1] == PERMISSION_GRANTED) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
@@ -107,13 +110,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void reportBugButtonTapped(View view) {
+    public void reportBugButtonTapped(@NonNull View view) {
         FileAttachment screenshot = Buglife.captureScreenshot();
         Buglife.addAttachment(screenshot);
         Buglife.showReporter();
     }
 
-    public void recordScreenButtonTapped(View view) {
+    public void recordScreenButtonTapped(@NonNull View view) {
         Buglife.startScreenRecording();
     }
 
